@@ -1,0 +1,7 @@
+#!/bin/bash
+# This is a simple post deploy hook executed after your application 
+# is deployed and started.  This script gets executed directly, so 
+# it could be python, php, ruby, etc.
+if [ ! -d $OPENSHIFT_DATA_DIR/solr.home ]  || [ ! "$(ls -A $OPENSHIFT_DATA_DIR/solr.home)" ]; then
+    cp -Rvu $OPENSHIFT_REPO_DIR/diy/core $OPENSHIFT_DATA_DIR/solr.home
+fi
